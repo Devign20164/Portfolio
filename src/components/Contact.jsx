@@ -32,14 +32,12 @@ const Contact = () => {
     {
       icon: FiMail,
       title: "Email",
-      value: "romeyluigi20164@email.com",
-      link: "mailto:john.developer@email.com"
+      value: "romeyluigi20164@gmail.com"
     },
     {
       icon: FiPhone,
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      value: "+63 915 265 5426"
     },
     {
       icon: FiMapPin,
@@ -80,7 +78,7 @@ const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">Get In Touch</h2>
           <div className="w-24 h-1 bg-black mx-auto mb-8"></div>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-            I'm always open to discussing new opportunities and interesting projects. 
+            I'm always open to discussing new opportunities and interesting projects.
             Let's connect and create something amazing together!
           </p>
         </motion.div>
@@ -97,7 +95,7 @@ const Contact = () => {
             <div>
               <h3 className="text-3xl font-bold text-black mb-6">Let's Talk</h3>
               <p className="text-gray-700 mb-8 leading-relaxed">
-                Whether you have a project in mind, want to collaborate, or just want to say hello, 
+                Whether you have a project in mind, want to collaborate, or just want to say hello,
                 I'd love to hear from you. Feel free to reach out through any of the channels below.
               </p>
             </div>
@@ -116,7 +114,7 @@ const Contact = () => {
                   <div>
                     <h4 className="text-lg font-semibold text-black">{item.title}</h4>
                     {item.link ? (
-                      <a 
+                      <a
                         href={item.link}
                         className="text-gray-600 hover:text-black transition-colors duration-200"
                       >
@@ -193,7 +191,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                   Subject
@@ -209,7 +207,7 @@ const Contact = () => {
                   placeholder="What's this about?"
                 />
               </div>
-              
+
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                   Message
@@ -225,7 +223,7 @@ const Contact = () => {
                   placeholder="Tell me about your project or just say hello!"
                 ></textarea>
               </div>
-              
+
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

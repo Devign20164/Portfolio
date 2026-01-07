@@ -26,22 +26,20 @@ const Projects = () => {
       icon: FiMessageSquare
     },
     {
-      title: "Finance-Tracker",
-      description: "A modern, full-featured personal finance management application built with React and TypeScript. Track your income, expenses, accounts, and credit cards with real-time updates and beautiful analytics.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop",
-      technologies: ["React", "SQL", "Tailwind CSS", "PostgreSQL"],
-      liveUrl: "https://financial-tracker-ruby.vercel.app/",
-      githubUrl: "https://github.com/Devign20164/Financial_Tracker",
-      icon: FiBarChart3
+      title: "Quantum Care Medical",
+      description: "Using Shopify, designed and implemented custom website layouts to enhance functionality and visual appeal. I also Conducted in-depth research on UI/UX strategies to optimize website performance and user experience. I delivered a more accessible and conversion-focused website that increased client inquiries, boosted online sales, and improved overall customer engagement.",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&h=300&fit=crop",
+      technologies: ["Shopify", "Liquid", "CSS", "UI/UX Design"],
+      liveUrl: "https://quantumcaremedical.com/",
+      icon: FiShoppingCart
     },
     {
-      title: "CollabHub-Collaborative Project Management Tool",
-      description: "A collaborative project management tool with kanban boards, task assignments, deadline tracking, and team collaboration features.",
-      image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=500&h=300&fit=crop",
-      technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-      liveUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      icon: FiCalendar
+      title: "RFP Response Generator",
+      description: "After researching Probolsky Research, I learned you respond to 200+ RFPs annually. I built an AI-powered tool that demonstrates how to reduce proposal writing time from 4+ hours to under 45 minutes.",
+      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500&h=300&fit=crop",
+      technologies: ["React", "AI", "Tailwind CSS", "Vercel"],
+      liveUrl: "https://rfpgenerator.vercel.app/",
+      icon: FiBarChart3
     }
   ];
 
@@ -118,17 +116,19 @@ const Projects = () => {
                     <SafeIcon icon={FiExternalLink} className="w-4 h-4" />
                     <span>Live Demo</span>
                   </motion.a>
-                  <motion.a
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 border-2 border-black text-black rounded-lg hover:bg-black hover:text-white transition-colors duration-200"
-                  >
-                    <SafeIcon icon={FiGithub} className="w-4 h-4" />
-                    <span>Code</span>
-                  </motion.a>
+                  {project.githubUrl && (
+                    <motion.a
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 px-4 py-2 border-2 border-black text-black rounded-lg hover:bg-black hover:text-white transition-colors duration-200"
+                    >
+                      <SafeIcon icon={FiGithub} className="w-4 h-4" />
+                      <span>Code</span>
+                    </motion.a>
+                  )}
                 </div>
               </div>
             </motion.div>
