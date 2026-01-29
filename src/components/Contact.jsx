@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 
-const { FiMail, FiPhone, FiMapPin, FiSend, FiGithub, FiLinkedin, FiTwitter } = FiIcons;
+const { FiMail, FiPhone, FiMapPin, FiSend, FiLinkedin } = FiIcons;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -49,19 +49,9 @@ const Contact = () => {
 
   const socialLinks = [
     {
-      icon: FiGithub,
-      name: "GitHub",
-      url: "https://github.com"
-    },
-    {
       icon: FiLinkedin,
       name: "LinkedIn",
-      url: "https://linkedin.com"
-    },
-    {
-      icon: FiTwitter,
-      name: "Twitter",
-      url: "https://twitter.com"
+      url: "https://www.linkedin.com/in/franco-luiz-romey-8a821b276"
     }
   ];
 
