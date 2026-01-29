@@ -4,6 +4,7 @@ import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
 import salesSystemImg from '../assets/sales-system.jpeg';
 import ecommerceImg from '../assets/ecommerce.png';
+import workflowSystemImg from '../assets/workflow-system.jpg';
 
 const { FiExternalLink, FiGithub, FiShoppingCart, FiMessageSquare, FiBarChart3, FiCalendar } = FiIcons;
 
@@ -12,6 +13,15 @@ const Projects = () => {
   const carousel = React.useRef();
 
   const projects = [
+    {
+      title: "Workflow Automation System",
+      description: "Enterprise-grade internal web application that digitizes and automates approval-based workflows (Purchase Requests, Leave Requests, IT Tickets). Features role-based access control (RBAC), secure data isolation, real-time analytics dashboards, and AI-assisted features.",
+      image: workflowSystemImg,
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Supabase", "React Query"],
+      liveUrl: "https://workflow-flame-six.vercel.app/auth",
+      icon: FiBarChart3,
+      category: ["Internal Tool", "SaaS"]
+    },
     {
       title: "Multi Tenant SaaS Platform",
       description: "Architected and built a scalable multi-tenant B2B SaaS platform (React, TypeScript, Supabase) supporting 512+ clients, featuring RLS-based RBAC, automated provisioning, and real-time inventory/order management that reduced processing time by 40%.Delivered a high-performance enterprise UI/UX using React, Tailwind, Shadcn UI, and React Query, achieving sub-second load times and enabling data-driven decision-making through interactive analytics dashboards.",
