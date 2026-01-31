@@ -1,108 +1,73 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import SafeIcon from '../common/SafeIcon';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiCode, FiDatabase, FiServer, FiSmartphone } = FiIcons;
 
 const About = () => {
-  const highlights = [
-    {
-      icon: FiCode,
-      title: "Frontend Development",
-      description: "Creating responsive and interactive user interfaces"
-    },
-    {
-      icon: FiServer,
-      title: "Backend Development", 
-      description: "Building robust server-side applications and APIs"
-    },
-    {
-      icon: FiDatabase,
-      title: "Database Design",
-      description: "Designing efficient and scalable database solutions"
-    },
-    {
-      icon: FiSmartphone,
-      title: "Mobile-First",
-      description: "Developing with mobile-first responsive design principles"
-    }
-  ];
-
   return (
-    <section id="about" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">About Me</h2>
-          <div className="w-24 h-1 bg-black mx-auto mb-8"></div>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* About Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <h3 className="text-3xl font-bold text-black mb-4">
-              Crafting Digital Experiences
-            </h3>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              I'm a passionate Junior Full Stack Developer with a love for creating 
-              innovative web applications. My journey in software development started 
-              with curiosity and has evolved into a dedicated pursuit of excellence 
-              in both frontend and backend technologies.
-            </p>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              I believe in writing clean, maintainable code and staying up-to-date 
-              with the latest industry trends. My goal is to build applications that 
-              not only function flawlessly but also provide exceptional user experiences.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-8">
-              <span className="px-4 py-2 bg-black text-white rounded-full text-sm font-medium">
-                Problem Solver
-              </span>
-              <span className="px-4 py-2 bg-gray-200 text-black rounded-full text-sm font-medium">
-                Team Player
-              </span>
-              <span className="px-4 py-2 bg-black text-white rounded-full text-sm font-medium">
-                Quick Learner
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Highlights Grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-2 gap-6"
-          >
-            {highlights.map((item, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 text-center"
-              >
-                <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mx-auto mb-4">
-                  <SafeIcon icon={item.icon} className="w-6 h-6 text-white" />
+    <section id="about" className="bg-white py-24 border-b border-gray-100">
+       <div className="container-wide">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+             
+             {/* Left Column: Profile Stats */}
+             <div className="lg:col-span-3 space-y-12">
+                <div>
+                   <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Location</h3>
+                   <p className="text-base font-medium">Manila, Philippines</p>
                 </div>
-                <h4 className="text-lg font-bold text-black mb-2">{item.title}</h4>
-                <p className="text-sm text-gray-600">{item.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
+                <div>
+                   <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Role</h3>
+                   <p className="text-base font-medium">Junior Full Stack Developer</p>
+                </div>
+                <div>
+                   <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4">Status</h3>
+                   <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                      <p className="text-base font-medium">Available for Projects</p>
+                   </div>
+                </div>
+             </div>
+
+             {/* Middle Column: Narrative */}
+             <div className="lg:col-span-5">
+                <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-8">Professional Summary</h3>
+                <div className="space-y-6">
+                   <p className="text-xl leading-relaxed font-light text-gray-800">
+                      I am a developer driven by the challenge of solving complex problems through elegant code. My background combines technical rigor with a deep appreciation for user-centric design.
+                   </p>
+                   <p className="text-base leading-relaxed text-gray-500 font-sans">
+                      Starting with a curiosity for how systems work, I have cultivated a skillset that spans the entire development lifecycle. From architecting database schemas to refining pixel-perfect interfaces, I aim to build applications that are resilient, scalable, and intuitive.
+                   </p>
+                </div>
+             </div>
+
+             {/* Right Column: Philosophy */}
+             <div className="lg:col-span-4 bg-gray-50 p-8 lg:p-10 rounded-sm">
+                <h3 className="text-[10px] font-bold uppercase tracking-widest text-black mb-8">Operating Principles</h3>
+                <ul className="space-y-6">
+                   <li className="flex gap-4 items-start">
+                      <span className="text-xs font-mono text-gray-400 mt-1">01</span>
+                      <div>
+                         <h4 className="text-sm font-bold mb-1">User First</h4>
+                         <p className="text-xs text-gray-600 leading-relaxed">Technology serves people. Every line of code should ultimately improve the end-user experience.</p>
+                      </div>
+                   </li>
+                   <li className="flex gap-4 items-start">
+                      <span className="text-xs font-mono text-gray-400 mt-1">02</span>
+                      <div>
+                         <h4 className="text-sm font-bold mb-1">Clean Architecture</h4>
+                         <p className="text-xs text-gray-600 leading-relaxed">Maintainability is key. I prioritize readable, modular, and well-documented code.</p>
+                      </div>
+                   </li>
+                   <li className="flex gap-4 items-start">
+                      <span className="text-xs font-mono text-gray-400 mt-1">03</span>
+                      <div>
+                         <h4 className="text-sm font-bold mb-1">Continuous Growth</h4>
+                         <p className="text-xs text-gray-600 leading-relaxed">The tech landscape never settles, and neither do I. I am committed to constant learning.</p>
+                      </div>
+                   </li>
+                </ul>
+             </div>
+
+          </div>
+       </div>
     </section>
   );
 };

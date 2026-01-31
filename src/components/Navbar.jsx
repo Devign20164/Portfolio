@@ -1,94 +1,92 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import SafeIcon from '../common/SafeIcon';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiMenu, FiX } = FiIcons;
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navItems = [
+    { label: 'Work', id: 'projects' },
+    { label: 'Expertise', id: 'skills' },
+    { label: 'Contact', id: 'contact' }
+  ];
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsOpen(false);
   };
 
-  const navItems = [
-    { label: 'Home', id: 'home' },
-    { label: 'About', id: 'about' },
-    { label: 'Skills', id: 'skills' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Contact', id: 'contact' }
-  ];
-
   return (
-    <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold text-black cursor-pointer"
+    <>
+      <motion.nav 
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}
+      >
+        <div className="container-wide flex justify-between items-center">
+          <div 
+            className="text-sm font-bold tracking-widest uppercase cursor-pointer z-50 mix-blend-difference text-black"
             onClick={() => scrollToSection('home')}
           >
-            &lt;Portfolio/&gt;
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <motion.button
-                key={item.id}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection(item.id)}
-                className="text-gray-700 hover:text-black transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </motion.button>
-            ))}
+            F.L. Romey
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-black"
-            >
-              <SafeIcon icon={isOpen ? FiX : FiMenu} className="w-6 h-6" />
-            </button>
+          <div className="hidden md:flex gap-12">
+             {navItems.map(item => (
+               <button 
+                 key={item.id}
+                 onClick={() => scrollToSection(item.id)}
+                 className="text-sm font-medium hover:text-gray-500 transition-colors"
+               >
+                 {item.label}
+               </button>
+             ))}
           </div>
-        </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-white border-t border-gray-200"
+          <button 
+            className="md:hidden z-50 text-black"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left px-3 py-2 text-gray-700 hover:text-black hover:bg-gray-50 rounded-md transition-colors duration-200"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+            {isOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
+          </button>
+        </div>
+      </motion.nav>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             exit={{ opacity: 0 }}
+             className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center"
+          >
+             <div className="flex flex-col items-center gap-8">
+                {navItems.map(item => (
+                   <button 
+                     key={item.id}
+                     onClick={() => scrollToSection(item.id)}
+                     className="text-4xl font-display text-black hover:italic transition-all"
+                   >
+                      {item.label}
+                   </button>
+                ))}
+             </div>
           </motion.div>
         )}
-      </div>
-    </motion.nav>
+      </AnimatePresence>
+    </>
   );
 };
 

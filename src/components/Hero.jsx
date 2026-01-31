@@ -1,141 +1,77 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import SafeIcon from '../common/SafeIcon';
-import * as FiIcons from 'react-icons/fi';
-
-const { FiArrowDown, FiGithub, FiLinkedin, FiMail, FiTerminal } = FiIcons;
 
 const Hero = () => {
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center bg-white text-black relative overflow-hidden pt-20">
-      
-      {/* Abstract Geometric Shapes */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Large soft circle */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-gray-50 mix-blend-multiply filter blur-3xl opacity-70"
-        />
-        {/* Second offset circle */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.5, delay: 0.2 }}
-          className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gray-100 mix-blend-multiply filter blur-3xl opacity-60"
-        />
-        {/* Thin geometric lines */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.03]" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M0 0 L100 100 M100 0 L0 100" stroke="black" strokeWidth="0.5" />
-        </svg>
-      </div>
+    <section id="home" className="min-h-screen pt-[var(--header-height)] bg-white flex flex-col justify-center relative overflow-hidden">
+       {/* Background Grid Pattern */}
+       <div className="absolute inset-0 w-full h-full bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+       
+       <div className="container-wide relative z-10">
+          <div className="max-w-6xl mx-auto">
+             
+             {/* Header Identity */}
+             <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6 }}
+               className="flex items-center gap-4 mb-12 border-b border-black/10 pb-6"
+             >
+                <div className="w-2 h-2 bg-black rounded-full"></div>
+                <span className="text-sm font-bold tracking-[0.2em] uppercase text-black">Franco Luiz Romey</span>
+                <span className="h-px flex-1 bg-black/10"></span>
+                <span className="text-sm font-mono text-gray-500">FULL STACK DEVELOPER</span>
+             </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-        <div className="flex flex-col items-center text-center">
-            
-            {/* Main Title - Serif & Minimal */}
-            <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="relative mb-8"
-            >
-                <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif tracking-tight text-black leading-[0.9] mb-4">
-                    Full Stack<br/>
-                    <span className="italic text-gray-800">Developer</span>
-                </h1>
-                
-                <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: "80px" }}
-                    transition={{ delay: 0.8, duration: 0.8 }}
-                    className="h-1 bg-black mx-auto mt-8"
-                />
-            </motion.div>
-
-            {/* Description */}
-            <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="text-lg md:text-xl text-gray-600 max-w-2xl font-light leading-relaxed mb-10"
-            >
-                I am <strong className="text-black font-medium">Franco Luiz Romey.</strong> I engineer robust digital systems with a focus on performance, scalability, and clean architecture.
-            </motion.p>
-            
-            {/* Action Buttons */}
-            <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-                className="flex flex-col sm:flex-row gap-5 items-center"
-            >
-                <button 
-                    onClick={() => scrollToSection('projects')}
-                    className="px-10 py-4 bg-black text-white text-sm font-bold tracking-widest hover:bg-gray-800 transition-all duration-300 shadow-xl shadow-gray-200/50"
-                >
-                    VIEW SELECTED WORK
-                </button>
-                <button 
-                    onClick={() => scrollToSection('contact')}
-                    className="px-8 py-4 bg-transparent text-black text-sm font-bold tracking-widest border border-gray-200 hover:border-black transition-colors duration-300"
-                >
-                    GET IN TOUCH
-                </button>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9 }}
-              className="mt-16 flex gap-6"
-            >
-                {[
-                    { icon: FiGithub, href: "https://github.com" },
-                    { icon: FiLinkedin, href: "https://linkedin.com" },
-                    { icon: FiMail, href: "mailto:john@example.com" }
-                ].map((item, index) => (
-                    <a 
-                        key={index}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-gray-400 hover:text-black transition-colors duration-300 hover:scale-110 transform"
-                    >
-                        <SafeIcon icon={item.icon} className="w-6 h-6" />
-                    </a>
-                ))}
-            </motion.div>
-        </div>
-      </div>
-
-      {/* Bottom Tech Bar - Minimalist */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-0 left-0 w-full py-6 bg-white/80 backdrop-blur-sm border-t border-gray-100"
-      >
-          <div className="max-w-7xl mx-auto px-4">
-             <div className="flex flex-wrap justify-between items-center text-xs md:text-sm font-bold tracking-[0.2em] text-gray-400 uppercase">
-                 <span className="hidden md:inline text-black">Tech Stack</span>
-                 <span className="cursor-default hover:text-black transition-colors">React</span>
-                 <span className="cursor-default hover:text-black transition-colors">Node.js</span>
-                 <span className="cursor-default hover:text-black transition-colors">TypeScript</span>
-                 <span className="cursor-default hover:text-black transition-colors">Next.js</span>
-                 <span className="cursor-default hover:text-black transition-colors">PostgreSQL</span>
+             {/* Main Headline */}
+             <div className="overflow-hidden mb-8">
+               <motion.h1 
+                 initial={{ y: "100%" }}
+                 animate={{ y: 0 }}
+                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                 className="text-display text-6xl md:text-8xl lg:text-9xl leading-[0.9] text-black tracking-tight"
+               >
+                 Building Scalable<br/>
+                 <span className="text-gray-400">Digital Systems.</span>
+               </motion.h1>
              </div>
+
+             {/* Value Prop & CTA */}
+             <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mt-12 md:mt-24">
+                <motion.div 
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   transition={{ duration: 1, delay: 0.6 }}
+                   className="md:col-span-6 lg:col-span-5"
+                >
+                   <p className="text-lg md:text-xl leading-relaxed text-gray-700 font-light">
+                      I specialize in engineering high-performance web applications. My work focuses on clean architecture, seamless user experiences, and robust backend integrations.
+                   </p>
+                </motion.div>
+                
+                <motion.div 
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   transition={{ duration: 1, delay: 0.8 }}
+                   className="md:col-span-6 lg:col-span-7 flex flex-col md:items-end justify-between"
+                >
+                   <div className="flex gap-12 text-xs font-mono text-gray-400 uppercase tracking-widest mb-8 md:mb-0">
+                      <span>Manila, PH</span>
+                      <span>Open for Work</span>
+                   </div>
+
+                   <button 
+                     onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                     className="group flex items-center gap-4 text-sm font-bold uppercase tracking-widest hover:text-gray-600 transition-colors"
+                   >
+                      <span className="w-8 h-[1px] bg-black group-hover:w-12 transition-all duration-300"></span>
+                      View Selected Works
+                   </button>
+                </motion.div>
+             </div>
+
           </div>
-      </motion.div>
+       </div>
     </section>
   );
 };

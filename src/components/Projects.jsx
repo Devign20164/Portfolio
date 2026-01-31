@@ -1,204 +1,143 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import SafeIcon from '../common/SafeIcon';
-import * as FiIcons from 'react-icons/fi';
+import React, { useRef } from 'react';
+import { motion, useTransform, useScroll } from 'framer-motion';
+import { FiArrowUpRight, FiLock } from 'react-icons/fi';
 import salesSystemImg from '../assets/sales-system.jpeg';
 import ecommerceImg from '../assets/ecommerce.png';
 import workflowSystemImg from '../assets/workflow-system.jpg';
 
-const { FiExternalLink, FiGithub, FiShoppingCart, FiMessageSquare, FiBarChart3, FiCalendar } = FiIcons;
+const HorizontalProjects = () => {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
 
-const Projects = () => {
-  const [width, setWidth] = useState(0);
-  const carousel = React.useRef();
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   const projects = [
     {
-      title: "Workflow Automation System",
-      description: "Enterprise-grade internal web application that digitizes and automates approval-based workflows (Purchase Requests, Leave Requests, IT Tickets). Features role-based access control (RBAC), secure data isolation, real-time analytics dashboards, and AI-assisted features.",
+      title: "Workflow Automation",
+      description: "Enterprise-grade internal web application reducing approval times by 60% through digitizing workflows.",
       image: workflowSystemImg,
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Supabase", "React Query"],
+      technologies: ["React", "TypeScript", "Tailwind", "Supabase"],
       liveUrl: "https://workflow-flame-six.vercel.app/auth",
-      icon: FiBarChart3,
-      category: ["Internal Tool", "SaaS"]
+      credentials: null,
+      id: "01"
     },
     {
-      title: "Multi Tenant SaaS Platform",
-      description: "Architected and built a scalable multi-tenant B2B SaaS platform (React, TypeScript, Supabase) supporting 512+ clients, featuring RLS-based RBAC, automated provisioning, and real-time inventory/order management that reduced processing time by 40%.Delivered a high-performance enterprise UI/UX using React, Tailwind, Shadcn UI, and React Query, achieving sub-second load times and enabling data-driven decision-making through interactive analytics dashboards.",
+      title: "Multi Tenant SaaS",
+      description: "Scalable B2B platform supporting 500+ clients. Handles real-time inventory and tenant isolation.",
       image: salesSystemImg,
-      technologies: ["React", "Supabase", "REST API", "RLS", "Tailwind CSS"],
+      technologies: ["React", "Supabase", "RLS", "Tailwind"],
       liveUrl: "https://b1-g-ordering-system-v2.vercel.app/login",
-      credentials: {
-        email: "test1@company.com",
-        password: "tempPassword123!"
-      },
-      icon: FiShoppingCart,
-      category: ["FrontEnd", "BackEnd"]
+      credentials: { email: "test1@company.com", pass: "tempPassword123!" },
+      id: "02"
     },
     {
       title: "Quantum Care Medical",
-      description: "Using Shopify, designed and implemented custom website layouts to enhance functionality and visual appeal. I also Conducted in-depth research on UI/UX strategies to optimize website performance and user experience. I delivered a more accessible and conversion-focused website that increased client inquiries, boosted online sales, and improved overall customer engagement.",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&h=300&fit=crop",
-      technologies: ["Shopify", "Liquid", "CSS", "UI/UX Design"],
+      description: "High-conversion Shopify implementation focused on accessibility and performance optimization.",
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      technologies: ["Shopify", "Liquid", "CSS", "UI/UX"],
       liveUrl: "https://quantumcaremedical.com/",
-      icon: FiShoppingCart,
-      category: ["FrontEnd", "E-Commerce"]
+      credentials: null,
+      id: "03"
     },
     {
       title: "Full Stack E-Commerce",
-      description: "A comprehensive e-commerce solution featuring separate portals for consumers and administrators. Includes secure authentication, product catalog management, cart functionality, and simulated payment processing for demonstration purposes.",
+      description: "Comprehensive shopping solution with cart logic, payment simulation, and product management.",
       image: ecommerceImg,
-      technologies: ["React", "Tailwind CSS", "Node.js", "MongoDB"],
+      technologies: ["React", "Node.js", "MongoDB", "Tailwind"],
       liveUrl: "https://e-commerce-theta-drab-78.vercel.app/",
-      credentials: {
-        email: "Any email",
-        password: "Any password"
-      },
-      icon: FiShoppingCart,
-      category: ["E-Commerce", "FrontEnd"]
+      credentials: { email: "Any email", pass: "Any password" },
+      id: "04"
     },
     {
-      title: "RFP Response Generator",
-      description: "After researching Probolsky Research, I learned you respond to 200+ RFPs annually. I built an AI-powered tool that demonstrates how to reduce proposal writing time from 4+ hours to under 45 minutes.",
+      title: "RFP Response Gen AI",
+      description: "AI-powered tool that reduces proposal writing time using LLMs for context-aware responses.",
       image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=500&h=300&fit=crop",
-      technologies: ["React", "AI", "Tailwind CSS", "Vercel"],
+      technologies: ["React", "OpenAI API", "Tailwind", "Vercel"],
       liveUrl: "https://rfpgenerator.vercel.app/",
-      icon: FiBarChart3,
-      category: ["Data"]
+      credentials: null,
+      id: "05"
     }
   ];
 
-  React.useEffect(() => {
-    if (carousel.current) {
-      setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-    }
-  }, []);
-
   return (
-    <section id="projects" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">Featured Projects</h2>
-          <div className="w-24 h-1 bg-black mx-auto mb-8"></div>
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-12">
-            Here are some of the systems and applications I've built using modern technologies
-          </p>
-        </motion.div>
+    <section id="projects" className="bg-white">
+      {/* Static Intro Section - moved outside sticky container */}
+      <div className="container-wide py-12 md:py-24">
+         <h2 className="text-display text-5xl md:text-7xl mb-4 text-black">Selected<br/>Works</h2>
+         <p className="text-sm font-bold tracking-widest uppercase text-gray-500">Scroll to Explore &rarr;</p>
+      </div>
 
-        {/* Carousel Container */}
-        <motion.div 
-          ref={carousel}
-          className="overflow-hidden cursor-grab active:cursor-grabbing pb-12"
-          whileTap={{ cursor: "grabbing" }}
-        >
-          <motion.div
-            drag="x"
-            dragConstraints={{ right: 0, left: -width }}
-            className="flex gap-8 px-4"
-            style={{ width: "fit-content" }}
-          >
-            {projects.map((project, index) => (
-              <motion.div
-                layout
-                key={project.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="min-w-[400px] w-[400px] bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex-shrink-0 flex flex-col h-auto"
+      <div ref={targetRef} className="relative h-[400vh]">
+        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+          <motion.div style={{ x }} className="flex gap-12 pl-[10vw] pr-24">
+            {projects.map((project) => (
+              <div 
+                key={project.id} 
+                className="group relative w-[85vw] md:w-[60vw] lg:w-[45vw] flex-shrink-0 flex flex-col justify-center"
               >
-                {/* Project Image */}
-                <div className="relative h-56 bg-gray-200 overflow-hidden group flex-shrink-0">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute top-4 left-4">
-                    <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                      <SafeIcon icon={project.icon} className="w-5 h-5 text-black" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* Project Content */}
-                <div className="p-8 flex flex-col h-[480px]">
-                  <div className="flex-col">
-                    {/* Fixed Height Title Area to align description */}
-                    <div className="h-16 mb-3 flex items-end">
-                       <h3 className="text-2xl font-bold text-black leading-tight w-full line-clamp-2">{project.title}</h3>
-                    </div>
-
-                    {/* Fixed Height Description Area to align Technologies */}
-                    <div className="h-[4.5rem] mb-6 overflow-hidden">
-                      <p className="text-gray-600 leading-relaxed text-sm line-clamp-3">
-                        {project.description}
-                      </p>
-                    </div>
-
-                    {/* Technologies - Now consistently placed */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-2 py-1 bg-gray-50 text-gray-600 rounded text-xs font-medium border border-gray-100"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Spacer to push Credentials/Button to bottom */}
-                  <div className="flex-grow"></div>
-
-                  <div className="space-y-4">
-                     {/* Credentials - Full View */}
-                     {project.credentials && (
-                      <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 text-sm">
-                        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Demo Access</p>
-                        <div className="space-y-1">
-                          <p className="flex items-center gap-2 text-gray-700">
-                            <span className="font-semibold text-gray-900 w-20">Email:</span> 
-                            <span className="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-gray-200">{project.credentials.email}</span>
-                          </p>
-                          <p className="flex items-center gap-2 text-gray-700">
-                            <span className="font-semibold text-gray-900 w-20">Password:</span> 
-                            <span className="font-mono text-xs bg-white px-1.5 py-0.5 rounded border border-gray-200">{project.credentials.password}</span>
-                          </p>
-                        </div>
+                 {/* Image Container */}
+                 <div className="aspect-[4/3] w-full overflow-hidden bg-gray-100 mb-8 relative">
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 z-10"></div>
+                    {/* Removed grayscale class */}
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                    
+                    {/* Floating Credentials Box */}
+                    {project.credentials && (
+                      <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-4 shadow-lg z-20 border-l-4 border-black">
+                          <div className="flex items-center gap-2 mb-2 text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                             <FiLock className="w-3 h-3" /> Access Credentials
+                          </div>
+                          <div className="grid grid-cols-[auto_1fr] gap-x-4 text-xs font-mono text-black">
+                             <span className="text-gray-400">ID:</span>
+                             <span className="select-all">{project.credentials.email}</span>
+                             <span className="text-gray-400">PW:</span>
+                             <span className="select-all">{project.credentials.pass}</span>
+                          </div>
                       </div>
                     )}
+                 </div>
 
-                    {/* Project Links */}
-                    <div className="">
-                      <motion.a
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center space-x-2 w-full py-3 bg-black text-white rounded-xl hover:bg-gray-800 transition-colors duration-200 text-sm font-bold shadow-lg shadow-black/10"
-                      >
-                        <SafeIcon icon={FiExternalLink} className="w-4 h-4" />
-                        <span>Launch Project</span>
-                      </motion.a>
+                 {/* Project Info */}
+                 <div>
+                    <div className="flex items-center justify-between mb-4 border-b border-black pb-2">
+                       <span className="text-xs font-bold tracking-[0.2em] uppercase text-gray-400">{project.id}</span>
+                       <div className="flex gap-2">
+                          {project.technologies.slice(0, 3).map(tech => (
+                             <span key={tech} className="text-[10px] uppercase font-bold border border-gray-200 px-2 py-0.5 rounded-full text-gray-500">{tech}</span>
+                          ))}
+                       </div>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
+                    
+                    <h3 className="text-display text-3xl md:text-5xl mb-4 leading-tight group-hover:italic transition-all">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-sm md:text-base text-gray-600 leading-relaxed max-w-md mb-6 line-clamp-3">
+                      {project.description}
+                    </p>
+
+                    <a 
+                      href={project.liveUrl} 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-gray-500 transition-colors"
+                    >
+                       View Live Site <FiArrowUpRight />
+                    </a>
+                 </div>
+              </div>
             ))}
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default Projects;
+export default HorizontalProjects;
