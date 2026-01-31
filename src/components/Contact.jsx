@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import { FiArrowUpRight, FiLinkedin } from 'react-icons/fi';
 
 const Contact = () => {
   return (
@@ -14,17 +14,15 @@ const Contact = () => {
               
               <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
                  <a 
-                   href="mailto:contact@francoromey.com" 
+                   href="mailto:romeyluigi20164@gmail.com" 
                    className="text-xl md:text-2xl border-b border-black pb-1 hover:text-gray-600 hover:border-gray-400 transition-all flex items-center gap-2"
                  >
-                    contact@francoromey.com <FiArrowUpRight />
+                    romeyluigi20164@gmail.com <FiArrowUpRight />
                  </a>
               </div>
               
               <div className="mt-20 flex justify-center gap-12 text-gray-500">
-                 <a href="#" className="hover:text-black transition-colors"><FiGithub className="w-6 h-6" /></a>
-                 <a href="#" className="hover:text-black transition-colors"><FiLinkedin className="w-6 h-6" /></a>
-                 <a href="#" className="hover:text-black transition-colors"><FiMail className="w-6 h-6" /></a>
+                 <a href="https://www.linkedin.com/in/franco-luiz-romey-8a821b276" target="_blank" rel="noreferrer" className="hover:text-black transition-colors"><FiLinkedin className="w-6 h-6" /></a>
               </div>
               
               <div className="mt-32 text-xs font-mono text-gray-400 uppercase tracking-widest">
